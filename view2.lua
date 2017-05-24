@@ -24,6 +24,8 @@ function scene:create( event )
           jobs[#jobs+1] =
       {
           date = row.Date,
+          FirstName = row.First_Name,
+          LastName = row.Last_Name,
           description = row.Job_Description,
           amount = row.Sale_Amount
       }
@@ -32,7 +34,7 @@ function scene:create( event )
     
     for i=1,table.getn(jobs)
     do
-      print("date: ",jobs[i].date, "description: ",jobs[i].description,"amount: ",jobs[i].amount)
+      print("Date: " .. jobs[i].date, "First Name: " .. jobs[i].FirstName, "Last Name: " ..  jobs[i].LastName,"description: " .. jobs[i].description,"Amount: ".. jobs[i].amount)
     end
   end
 	
@@ -73,6 +75,10 @@ function scene:hide( event )
     description_field.isVisible = true
     Price.isVisible = true
     price_field.isVisible = true
+    First_Name.isVisible = true
+    First_Name_field.isVisible = true
+    Last_Name.isVisible = true
+    Last_Name_field.isVisible = true
     
 	end
 end

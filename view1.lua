@@ -7,6 +7,8 @@
 local composer = require( "composer" )
 local scene = composer.newScene()
 
+
+
 function scene:create( event )
 	local sceneGroup = self.view
 	
@@ -17,13 +19,13 @@ function scene:create( event )
 	
 	-- create a white background to fill screen
 	local background = display.newRect( display.contentCenterX, display.contentCenterY, display.contentWidth, display.contentHeight )
-	background:setFillColor( 1 )	-- white
+	background:setFillColor( 0 )	-- white
 	
 	-- create some text
   
   -- Form submission button -- 
-  local SubmitBtn = display.newText("Submit", display.contentCenterX, display.contentCenterY * 1.5, native.SystemFont, 32)
-  SubmitBtn:setFillColor( 0 )
+  local SubmitBtn = display.newText("Submit", display.contentCenterX, display.contentCenterY * 1.7, native.SystemFont, 24)
+  SubmitBtn:setFillColor( 1 )
   
   local function onClick(event)
     if (event.phase == "began") then
@@ -38,24 +40,35 @@ function scene:create( event )
       SubmitBtn.xScale = 1
       SubmitBtn.yScale = 1
       print("ended")
-      local info = 
-      {
+      if(DB_input[0] ~= nil and DB_input[1] ~= nil and DB_input[2] ~= nil and DB_input[3] ~= nil and DB_input[4] ~= nil) then
+        local info = 
         {
-          date = tostring(DB_input[0]),
-          description = tostring(DB_input[1]),
-          amount = tostring(DB_input[2])
+          {
+            date = tostring(DB_input[0]),
+            FirstName = tostring(DB_input[1]),
+            LastName = tostring(DB_input[2]),
+            amount = tostring(DB_input[3]),
+            description = tostring(DB_input[4])
+            
+          }
         }
-      }
-      
-      for i = 1,#info do
-      local q = [[INSERT INTO Job VALUES (NULL, ']] .. info[i].date .. [[',']] .. info[i].description .. [[', ']] ..   info[i].amount .. [[');]]
-      db:exec( q )
+          for i = 1,#info do
+           -- local q = [[INSERT INTO Job VALUES (NULL, ']] .. info[i].date .. [[',']] .. info[i].FirstName .. [[', ']] ..   info[i].LastName .. [[', ']] .. info[i].amount .. [[',']] .. info[i].description[[');]]
+            local q = [[INSERT INTO Job VALUES (NULL, ']] .. info[i].date .. [[',']] .. info[i].FirstName .. [[', ']] ..   info[i]. LastName .. [[', ']] .. info[i].description .. [[', ']] .. info[i].amount .. [[');]]
+            db:exec( q )
+          end
+          DB_input = {}
+          date_field.text = ''
+          description_field.text = ''
+          price_field.text = ''
+          First_Name_field.txt = ''
+          Last_Name_field.txt = ''
+      else
+        print("invalid submission")
+          
       end
-      
-     -- local insertQuery = [[INSERT INTO Job VALUES (NULL, DB_input[0], DB_input[1], DB_input[2]);]]
-     -- db:exec( insertQuery )
     end
-end
+  end
   
   
   -- Button End -- 
@@ -102,6 +115,10 @@ function scene:hide( event )
     description_field.isVisible = false
     Price.isVisible = false
     price_field.isVisible = false
+     First_Name.isVisible = false
+    First_Name_field.isVisible = false
+    Last_Name.isVisible = false
+    Last_Name_field.isVisible = false
 	end
 end
 
