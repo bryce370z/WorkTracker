@@ -18,26 +18,6 @@ function scene:create( event )
 	local background = display.newRect( display.contentCenterX, display.contentCenterY, display.contentWidth, display.contentHeight )
 	background:setFillColor( 1 )	-- white
 	
-  function givelist()
-    local jobs = {}
-    for row in db:nrows("SELECT * FROM Job") do
-          jobs[#jobs+1] =
-      {
-          date = row.Date,
-          FirstName = row.First_Name,
-          LastName = row.Last_Name,
-          description = row.Job_Description,
-          amount = row.Sale_Amount
-      }
-      
-    end
-    
-    for i=1,table.getn(jobs)
-    do
-      print("Date: " .. jobs[i].date, "First Name: " .. jobs[i].FirstName, "Last Name: " ..  jobs[i].LastName,"description: " .. jobs[i].description,"Amount: ".. jobs[i].amount)
-    end
-  end
-	
 	-- all objects must be added to group (e.g. self.view)
 	sceneGroup:insert( background )
 
@@ -51,7 +31,6 @@ function scene:show( event )
 		-- Called when the scene is still off screen and is about to move on screen
 	elseif phase == "did" then
 		-- Called when the scene is now on screen
-    givelist()
 		-- 
 		-- INSERT code here to make the scene come alive
 		-- e.g. start timers, begin animation, play audio, etc.
@@ -79,6 +58,10 @@ function scene:hide( event )
     First_Name_field.isVisible = true
     Last_Name.isVisible = true
     Last_Name_field.isVisible = true
+    Start_Date.isVisible = false
+    Start_Date_field.isVisible = false
+    End_Date.isVisible = false
+    End_Date_field.isVisible = false
     
 	end
 end

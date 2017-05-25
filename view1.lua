@@ -9,9 +9,15 @@ local scene = composer.newScene()
 
 
 
+
 function scene:create( event )
 	local sceneGroup = self.view
-	
+  
+    Start_Date.isVisible = false
+    Start_Date_field.isVisible = false
+    End_Date.isVisible = false
+    End_Date_field.isVisible = false
+
 	-- Called when the scene's view does not exist.
 	-- 
 	-- INSERT code here to initialize the scene
@@ -119,6 +125,10 @@ function scene:hide( event )
     First_Name_field.isVisible = false
     Last_Name.isVisible = false
     Last_Name_field.isVisible = false
+    Start_Date.isVisible = true
+    Start_Date_field.isVisible = true
+    End_Date.isVisible = true
+    End_Date_field.isVisible = true
 	end
 end
 

@@ -95,11 +95,29 @@ description_field.size = 16
 
 -- Job Description End --
 
+-- input start date range --
+Start_Date = display.newText("Enter Start Date: ",display.contentCenterX, (display.contentCenterY * .1), native.systemFont, 16)
+Start_Date:setFillColor(0)
+
+Start_Date_field = native.newTextField(display.contentCenterX, (display.contentCenterY * .2),(display.viewableContentWidth * .5), (display.viewableContentHeight * .05))
+Start_Date_field.size = 12
+Start_Date_field:resizeFontToFitHeight()
+-- input start date range --
+
+-- input end date --
+End_Date = display.newText("Enter End Date: ",display.contentCenterX, (display.contentCenterY * .3), native.systemFont, 16)
+End_Date:setFillColor(0)
+
+End_Date_field = native.newTextField(display.contentCenterX, (display.contentCenterY * .4),(display.viewableContentWidth * .5), (display.viewableContentHeight * .05))
+End_Date_field.size = 12
+End_Date_field:resizeFontToFitHeight()
+-- input end date --
+
 
 -- function to format date to cooperate with sqlite3 yyyy/mm/dd -- 
 function date_check(string)
   -- print("string",string)
-  local regex = "[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9]"
+  local regex = "[0-9][0-9][0-9][0-9][-][0-9][0-9][-][0-9][0-9]"
   local checker = string.match(string,regex)
   if(checker == nil) then
     print("date rejected")
@@ -128,7 +146,7 @@ end
 
 --function to make sure first and last names are in the correct format
 function name_check(string)
-  local regex = "^[a-zA-Z]*$"
+  local regex = "^[a-zA-Z]+$"
   local checker = string.match(string,regex)
   if(checker == nil) then
     print("name rejected")
@@ -213,12 +231,75 @@ local function description_fieldHandler(event)
   end
 end
 
+local function Start_Date_fieldHandler(event)
+    if event.phase == "began" then
+  elseif event.phase == "ended" then
+  elseif event.phase == "submitted" then
+    print("submitted")
+  elseif event.phase == "editing" then
+    print("editing")
+  end
+end
+
+local function End_Date_fieldHandler(event)
+    if event.phase == "began" then
+  elseif event.phase == "ended" then
+    if(date_check(event.target.text) and date_check(Start_Date_field.text)) then
+      givelist(Start_Date_field.text,End_Date_field.text)
+      print("date range is good")
+    end
+  elseif event.phase == "submitted" then
+    print("submitted")
+  elseif event.phase == "editing" then
+    print("editing")
+  end
+end
+
+
+
+-- view 1 listeners -- 
 date_field:addEventListener("userInput",date_fieldHandler)
 First_Name_field:addEventListener("userInput",First_Name_fieldHandler)
 Last_Name_field:addEventListener("userInput",Last_Name_fieldHandler)
 price_field:addEventListener("userInput",price_fieldHandler)
 description_field:addEventListener("userInput",description_fieldHandler)
+
+--view 1 listeners --
+
+-- view 2 listeners --
+Start_Date_field:addEventListener("userInput",Start_Date_fieldHandler)
+End_Date_field:addEventListener("userInput",End_Date_fieldHandler)
+
+-- view 2 listeners -- 
+
 --Event Handlers End--
+
+-- function to pull data from DB --
+function givelist(start,stop)
+  print(start)
+  print(stop)
+  --db:exec(query)
+    local jobs = {}
+    for row in db:nrows("SELECT * FROM Job WHERE Date BETWEEN ".."'"..start.."'".." AND ".."'"..stop.."'") do
+          jobs[#jobs+1] =
+      {
+          date = row.Date,
+          FirstName = row.First_Name,
+          LastName = row.Last_Name,
+          description = row.Job_Description,
+          amount = row.Sale_Amount
+      }
+      
+    end
+    
+    for i=1,table.getn(jobs)
+    do
+      print("Date: " .. jobs[i].date, "First Name: " .. jobs[i].FirstName, "Last Name: " ..  jobs[i].LastName,"description: " .. jobs[i].description,"Amount: ".. jobs[i].amount)
+    end
+  end
+  
+  -- Pulls Data --
+
 -- create a tabBar widget with two buttons at the bottom of the screen
 
 -- table to setup buttons
@@ -234,6 +315,7 @@ local tabBar = widget.newTabBar{
   top = display.contentHeight - 50,	-- 50 is default height for tabBar widget
   buttons = tabButtons
 }
+
 
 
 
