@@ -7,6 +7,7 @@
 local composer = require( "composer" )
 local scene = composer.newScene()
 
+
 function scene:create( event )
 	local sceneGroup = self.view
 	-- Called when the scene's view does not exist.
@@ -17,6 +18,7 @@ function scene:create( event )
 	-- create a white background to fill screen
 	local background = display.newRect( display.contentCenterX, display.contentCenterY, display.contentWidth, display.contentHeight )
 	background:setFillColor( 1 )	-- white
+  
 	
 	-- all objects must be added to group (e.g. self.view)
 	sceneGroup:insert( background )
@@ -62,6 +64,7 @@ function scene:hide( event )
     Start_Date_field.isVisible = false
     End_Date.isVisible = false
     End_Date_field.isVisible = false
+    scrollview.isVisible = false
     
 	end
 end

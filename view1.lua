@@ -17,6 +17,7 @@ function scene:create( event )
     Start_Date_field.isVisible = false
     End_Date.isVisible = false
     End_Date_field.isVisible = false
+    scrollview.isVisible = false
 
 	-- Called when the scene's view does not exist.
 	-- 
@@ -25,13 +26,13 @@ function scene:create( event )
 	
 	-- create a white background to fill screen
 	local background = display.newRect( display.contentCenterX, display.contentCenterY, display.contentWidth, display.contentHeight )
-	background:setFillColor( 0 )	-- white
+	background:setFillColor( 1 )	-- white
 	
 	-- create some text
   
   -- Form submission button -- 
   local SubmitBtn = display.newText("Submit", display.contentCenterX, display.contentCenterY * 1.7, native.SystemFont, 24)
-  SubmitBtn:setFillColor( 1 )
+  SubmitBtn:setFillColor( 0 )
   
   local function onClick(event)
     if (event.phase == "began") then
@@ -129,6 +130,7 @@ function scene:hide( event )
     Start_Date_field.isVisible = true
     End_Date.isVisible = true
     End_Date_field.isVisible = true
+    scrollview.isVisible = true
 	end
 end
 

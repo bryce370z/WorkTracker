@@ -43,30 +43,30 @@ end
 
 DB_input = {}
 -- Inputting the Date --
-Date = display.newText( "Enter Job Completion Date: ", display.contentCenterX, (display.contentCenterY * .1), native.systemFont, 16 )
-Date:setFillColor( 1 )	-- black
+Date = display.newText( "Date: ", display.contentCenterX * .16, (display.contentCenterY * .1), native.systemFont, 16 )
+Date:setFillColor( 0 )	-- black
 
-date_field = native.newTextField(display.contentCenterX, display.contentCenterY * .2, (display.viewableContentWidth * .5), (display.viewableContentHeight * .05))
+date_field = native.newTextField(display.contentCenterX * 1.45, display.contentCenterY * .1, (display.viewableContentWidth * .5), (display.viewableContentHeight * .05))
 date_field.size = 12
 date_field:resizeFontToFitHeight()
 
 -- Date input is finished --
 
 -- Inputting client First Name --
-First_Name = display.newText( "Enter Client First Name: ", display.contentCenterX, (display.contentCenterY * .3), native.systemFont, 16 )
-First_Name :setFillColor( 1 )	-- black
+First_Name = display.newText( "First Name: ", display.contentCenterX * .3, (display.contentCenterY * .3), native.systemFont, 16 )
+First_Name :setFillColor( 0 )	-- black
 
-First_Name_field = native.newTextField(display.contentCenterX, display.contentCenterY * .4, (display.viewableContentWidth * .5), (display.viewableContentHeight * .05))
+First_Name_field = native.newTextField(display.contentCenterX * 1.45, display.contentCenterY * .3, (display.viewableContentWidth * .5), (display.viewableContentHeight * .05))
 First_Name_field.size = 12
 First_Name_field:resizeFontToFitHeight()
 
 -- First name input end --
 
 -- Inputting Client Last Name --
-Last_Name = display.newText( "Enter Client Last Name: ", display.contentCenterX, (display.contentCenterY * .5), native.systemFont, 16 )
-Last_Name :setFillColor( 1 )	-- black
+Last_Name = display.newText( "Last Name: ", display.contentCenterX * .3, (display.contentCenterY * .5), native.systemFont, 16 )
+Last_Name :setFillColor( 0 )	-- black
 
-Last_Name_field = native.newTextField(display.contentCenterX, display.contentCenterY * .6, (display.viewableContentWidth * .5), (display.viewableContentHeight * .05))
+Last_Name_field = native.newTextField(display.contentCenterX * 1.45, display.contentCenterY * .5, (display.viewableContentWidth * .5), (display.viewableContentHeight * .05))
 Last_Name_field.size = 12
 Last_Name_field:resizeFontToFitHeight()
 -- Last Name input finished --
@@ -75,10 +75,10 @@ Last_Name_field:resizeFontToFitHeight()
 
 -- Input Amount of Sale --
 
-Price = display.newText( "Enter Amount of Sale: ", display.contentCenterX, (display.contentCenterY * .7), native.systemFont, 16 )
-Price:setFillColor( 1 )
+Price = display.newText( "Sale Amount: ", display.contentCenterX * .335, (display.contentCenterY * .7), native.systemFont, 16 )
+Price:setFillColor( 0 )
 
-price_field = native.newTextField(display.contentCenterX, display.contentCenterY * .8, (display.viewableContentWidth * .5), (display.viewableContentHeight * .05))
+price_field = native.newTextField(display.contentCenterX * 1.45, display.contentCenterY * .7, (display.viewableContentWidth * .5), (display.viewableContentHeight * .05))
 price_field.size = 12
 price_field:resizeFontToFitHeight()
 
@@ -86,8 +86,8 @@ price_field:resizeFontToFitHeight()
 -- Amount of Sale End --
 
 -- Input Job Description -- 
-Description = display.newText( "Enter Job Description: ", display.contentCenterX, (display.contentCenterY * .9), native.systemFont, 16 )
-Description:setFillColor( 1 )
+Description = display.newText( "Job Description ", display.contentCenterX, (display.contentCenterY * .9), native.systemFont, 16 )
+Description:setFillColor( 0 )
 
 description_field = native.newTextField(display.contentCenterX, display.contentCenterY * 1.3, (display.viewableContentWidth * .9), (display.viewableContentHeight * .3))
 description_field.size = 16
@@ -96,26 +96,26 @@ description_field.size = 16
 -- Job Description End --
 
 -- input start date range --
-Start_Date = display.newText("Enter Start Date: ",display.contentCenterX, (display.contentCenterY * .1), native.systemFont, 16)
+Start_Date = display.newText("Start Date: ",display.contentCenterX * .265, (display.contentCenterY * .1), native.systemFont, 16)
 Start_Date:setFillColor(0)
 
-Start_Date_field = native.newTextField(display.contentCenterX, (display.contentCenterY * .2),(display.viewableContentWidth * .5), (display.viewableContentHeight * .05))
+Start_Date_field = native.newTextField(display.contentCenterX * 1.1, (display.contentCenterY * .1),(display.viewableContentWidth * .5), (display.viewableContentHeight * .05))
 Start_Date_field.size = 12
 Start_Date_field:resizeFontToFitHeight()
 -- input start date range --
 
 -- input end date --
-End_Date = display.newText("Enter End Date: ",display.contentCenterX, (display.contentCenterY * .3), native.systemFont, 16)
+End_Date = display.newText("End Date: ",display.contentCenterX * .25, (display.contentCenterY * .3), native.systemFont, 16)
 End_Date:setFillColor(0)
 
-End_Date_field = native.newTextField(display.contentCenterX, (display.contentCenterY * .4),(display.viewableContentWidth * .5), (display.viewableContentHeight * .05))
+End_Date_field = native.newTextField(display.contentCenterX * 1.1, (display.contentCenterY * .3),(display.viewableContentWidth * .5), (display.viewableContentHeight * .05))
 End_Date_field.size = 12
 End_Date_field:resizeFontToFitHeight()
 -- input end date --
 
 
 -- function to format date to cooperate with sqlite3 yyyy/mm/dd -- 
-function date_check(string)
+local function date_check(string)
   -- print("string",string)
   local regex = "[0-9][0-9][0-9][0-9][-][0-9][0-9][-][0-9][0-9]"
   local checker = string.match(string,regex)
@@ -130,7 +130,7 @@ end
 -- end of function -- 
 
 -- function to check if amount of sale is in correct format--
-function price_check(string)
+local function price_check(string)
   -- ^ "expression" $ means to match the whole string not just part of it
   local regex = "^[0-9]+$"
   local checker = string.match(string,regex)
@@ -145,7 +145,7 @@ end
 -- end of function --
 
 --function to make sure first and last names are in the correct format
-function name_check(string)
+local function name_check(string)
   local regex = "^[a-zA-Z]+$"
   local checker = string.match(string,regex)
   if(checker == nil) then
@@ -274,6 +274,39 @@ End_Date_field:addEventListener("userInput",End_Date_fieldHandler)
 
 --Event Handlers End--
 
+
+   -- scroll view to display DB data in view 2 --
+  local function scrollListener(event)
+    local phase = event.phase
+    local direction = event.direction
+    
+    if event.limitReached then
+      if "up" == direction then
+        print("limit reached top")
+      elseif "down" == direction then
+        print("limit reached down")
+      end
+    end
+    
+    return true
+    
+  end
+  -- scroll view to display DB data --
+    scrollview = widget.newScrollView
+  {
+    left = 0,
+    top = display.viewableContentHeight * .3,
+    width = display.contentWidth,
+    height = display.viewableContentHeight * .7,
+    scrollHeight = display.viewableContentHeight * 3,
+    horizontalScrollDisabled = true,
+    verticalScrollDisabled = false,
+    isBounceEnabled = true,
+    Listener = scrollListener,
+  }
+  -- scroll view --
+  
+
 -- function to pull data from DB --
 function givelist(start,stop)
   print(start)
@@ -292,13 +325,24 @@ function givelist(start,stop)
       
     end
     
-    for i=1,table.getn(jobs)
-    do
-      print("Date: " .. jobs[i].date, "First Name: " .. jobs[i].FirstName, "Last Name: " ..  jobs[i].LastName,"description: " .. jobs[i].description,"Amount: ".. jobs[i].amount)
+    
+    local text = ""
+    for i=1,table.getn(jobs) do
+      text = text .. " Date: " .. jobs[i].date .. "\nFirst Name: " .. jobs[i].FirstName .. "\nLast Name: " ..  jobs[i].LastName .."\ndescription: " .. jobs[i].description .. "\nAmount: ".. jobs[i].amount .. "\n\n"
+    end
+    print(text)
+    if(text ~= nil) then
+      textObj = display.newText(text, 0, 0, 300, 0, native.systemFont, 12)
+      textObj:setTextColor(0)
+      textObj.x = display.contentCenterX
+      textObj.y = display.viewableContentHeight * .5
+      scrollview:insert(textObj)
     end
   end
+
   
   -- Pulls Data --
+  
 
 -- create a tabBar widget with two buttons at the bottom of the screen
 
