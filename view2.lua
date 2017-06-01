@@ -18,7 +18,12 @@ function scene:create( event )
 	-- create a white background to fill screen
 	local background = display.newRect( display.contentCenterX, display.contentCenterY, display.contentWidth, display.contentHeight )
 	background:setFillColor( 1 )	-- white
-  
+  border1.isVisible = false
+  border2.isVisible = false
+  border3.isVisible = false
+  border4.isVisible = false
+  border5.isVisible = false
+     
 	
 	-- all objects must be added to group (e.g. self.view)
 	sceneGroup:insert( background )
@@ -65,6 +70,14 @@ function scene:hide( event )
     End_Date.isVisible = false
     End_Date_field.isVisible = false
     scrollview.isVisible = false
+    
+    border1.isVisible = true
+    border2.isVisible = true
+    border3.isVisible = true
+    border4.isVisible = true
+    border5.isVisible = true
+    border6.isVisible = false
+    border7.isVisible = false
     
 	end
 end

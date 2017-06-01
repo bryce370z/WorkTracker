@@ -23,8 +23,6 @@ db:exec( tablesetup )
 ---   db:exec( insertQuery )
 -- database end ---
 
-
-
 -- include Corona's "widget" library
 local widget = require "widget"
 local composer = require "composer"
@@ -43,31 +41,35 @@ end
 
 DB_input = {}
 -- Inputting the Date --
-Date = display.newText( "Date: ", display.contentCenterX * .16, (display.contentCenterY * .1), native.systemFont, 16 )
+Date = display.newText( "Date: ", display.contentCenterX * .16, (display.contentCenterY * .1), native.systemFontBold, 16 )
 Date:setFillColor( 0 )	-- black
 
 date_field = native.newTextField(display.contentCenterX * 1.45, display.contentCenterY * .1, (display.viewableContentWidth * .5), (display.viewableContentHeight * .05))
 date_field.size = 12
+date_field.placeholder = "Enter Date"
 date_field:resizeFontToFitHeight()
+
 
 -- Date input is finished --
 
 -- Inputting client First Name --
-First_Name = display.newText( "First Name: ", display.contentCenterX * .3, (display.contentCenterY * .3), native.systemFont, 16 )
-First_Name :setFillColor( 0 )	-- black
+First_Name = display.newText( "First Name: ", display.contentCenterX * .3, (display.contentCenterY * .3), native.systemFontBold, 16 )
+First_Name:setFillColor( 0 )	-- black
 
 First_Name_field = native.newTextField(display.contentCenterX * 1.45, display.contentCenterY * .3, (display.viewableContentWidth * .5), (display.viewableContentHeight * .05))
 First_Name_field.size = 12
+First_Name_field.placeholder = "Enter First Name"
 First_Name_field:resizeFontToFitHeight()
 
 -- First name input end --
 
 -- Inputting Client Last Name --
-Last_Name = display.newText( "Last Name: ", display.contentCenterX * .3, (display.contentCenterY * .5), native.systemFont, 16 )
+Last_Name = display.newText( "Last Name: ", display.contentCenterX * .3, (display.contentCenterY * .5), native.systemFontBold, 16 )
 Last_Name :setFillColor( 0 )	-- black
 
 Last_Name_field = native.newTextField(display.contentCenterX * 1.45, display.contentCenterY * .5, (display.viewableContentWidth * .5), (display.viewableContentHeight * .05))
 Last_Name_field.size = 12
+Last_Name_field.placeholder = "Enter Last Name"
 Last_Name_field:resizeFontToFitHeight()
 -- Last Name input finished --
 
@@ -75,43 +77,89 @@ Last_Name_field:resizeFontToFitHeight()
 
 -- Input Amount of Sale --
 
-Price = display.newText( "Sale Amount: ", display.contentCenterX * .335, (display.contentCenterY * .7), native.systemFont, 16 )
+Price = display.newText( "Sale Amount: ", display.contentCenterX * .335, (display.contentCenterY * .7), native.systemFontBold, 16 )
 Price:setFillColor( 0 )
 
 price_field = native.newTextField(display.contentCenterX * 1.45, display.contentCenterY * .7, (display.viewableContentWidth * .5), (display.viewableContentHeight * .05))
 price_field.size = 12
+price_field.placeholder = "Enter Sale Amount"
 price_field:resizeFontToFitHeight()
 
 
 -- Amount of Sale End --
 
 -- Input Job Description -- 
-Description = display.newText( "Job Description ", display.contentCenterX, (display.contentCenterY * .9), native.systemFont, 16 )
+Description = display.newText( "Job Description ", display.contentCenterX, (display.contentCenterY * .9), native.systemFontBold, 16 )
 Description:setFillColor( 0 )
 
-description_field = native.newTextField(display.contentCenterX, display.contentCenterY * 1.3, (display.viewableContentWidth * .9), (display.viewableContentHeight * .3))
+description_field = native.newTextBox(display.contentCenterX, display.contentCenterY * 1.3, (display.viewableContentWidth * .9), (display.viewableContentHeight * .3))
+description_field.isEditable = true
 description_field.size = 16
+description_field.placeholder = "Enter description of services"
 -- description_field:resizeFontToFitHeight()
 
 -- Job Description End --
 
 -- input start date range --
-Start_Date = display.newText("Start Date: ",display.contentCenterX * .265, (display.contentCenterY * .1), native.systemFont, 16)
+Start_Date = display.newText("Start Date: ",display.contentCenterX * .265, (display.contentCenterY * .1), native.systemFontBold, 16)
 Start_Date:setFillColor(0)
 
-Start_Date_field = native.newTextField(display.contentCenterX * 1.1, (display.contentCenterY * .1),(display.viewableContentWidth * .5), (display.viewableContentHeight * .05))
+Start_Date_field = native.newTextField(display.contentCenterX * 1.45, (display.contentCenterY * .1),(display.viewableContentWidth * .5), (display.viewableContentHeight * .05))
 Start_Date_field.size = 12
 Start_Date_field:resizeFontToFitHeight()
+Start_Date_field.placeholder = "Enter Start Date"
 -- input start date range --
 
 -- input end date --
-End_Date = display.newText("End Date: ",display.contentCenterX * .25, (display.contentCenterY * .3), native.systemFont, 16)
+End_Date = display.newText("End Date: ",display.contentCenterX * .25, (display.contentCenterY * .3), native.systemFontBold, 16)
 End_Date:setFillColor(0)
 
-End_Date_field = native.newTextField(display.contentCenterX * 1.1, (display.contentCenterY * .3),(display.viewableContentWidth * .5), (display.viewableContentHeight * .05))
+End_Date_field = native.newTextField(display.contentCenterX * 1.45, (display.contentCenterY * .3),(display.viewableContentWidth * .5), (display.viewableContentHeight * .05))
 End_Date_field.size = 12
 End_Date_field:resizeFontToFitHeight()
+End_Date_field.placeholder = "Enter End Date"
 -- input end date --
+
+-- Borders for forms in order from top to bottom of screen --
+border1 = display.newRoundedRect(display.contentCenterX * 1.45,display.contentCenterY * .1,display.viewableContentWidth * .52,display.viewableContentHeight * .061,3)
+border1.strokeWidth = 1.5
+border1:setFillColor(1)
+border1:setStrokeColor(gray)
+
+border2 = display.newRoundedRect(display.contentCenterX * 1.45,display.contentCenterY * .3,display.viewableContentWidth * .52,display.viewableContentHeight * .061,3)
+border2.strokeWidth = 1.5
+border2:setFillColor(1)
+border2:setStrokeColor(gray)
+
+border3 = display.newRoundedRect(display.contentCenterX * 1.45,display.contentCenterY * .5,display.viewableContentWidth * .52,display.viewableContentHeight * .061,3)
+border3.strokeWidth = 1.5
+border3:setFillColor(1)
+border3:setStrokeColor(gray)
+
+border4 = display.newRoundedRect(display.contentCenterX * 1.45,display.contentCenterY * .7,display.viewableContentWidth * .52,display.viewableContentHeight * .061,3)
+border4.strokeWidth = 1.5
+border4:setFillColor(1)
+border4:setStrokeColor(gray)
+
+border5 = display.newRoundedRect(display.contentCenterX,display.contentCenterY * 1.3,display.viewableContentWidth * .915,display.viewableContentHeight * .315,3)
+border5.strokeWidth = 1.5
+border5:setFillColor(1)
+border5:setStrokeColor(gray)
+
+
+-- Borders for 2nd view --
+border6 = display.newRoundedRect(display.contentCenterX * 1.45,display.contentCenterY * .1,display.viewableContentWidth * .52,display.viewableContentHeight * .061,3)
+border6.strokeWidth = 1.5
+border6:setFillColor(1)
+border6:setStrokeColor(gray)
+
+border7 = display.newRoundedRect(display.contentCenterX * 1.45,display.contentCenterY * .3,display.viewableContentWidth * .52,display.viewableContentHeight * .061,3)
+border7.strokeWidth = 1.5
+border7:setFillColor(1)
+border7:setStrokeColor(gray)
+
+-- Borders -- 
+
 
 
 -- function to format date to cooperate with sqlite3 yyyy/mm/dd -- 
@@ -311,6 +359,7 @@ End_Date_field:addEventListener("userInput",End_Date_fieldHandler)
 function givelist(start,stop)
   print(start)
   print(stop)
+  scrollview:remove(textObj)
   --db:exec(query)
     local jobs = {}
     for row in db:nrows("SELECT * FROM Job WHERE Date BETWEEN ".."'"..start.."'".." AND ".."'"..stop.."'") do
@@ -348,8 +397,8 @@ function givelist(start,stop)
 
 -- table to setup buttons
 local tabButtons = {
-  { label="First", defaultFile="icon1.png", overFile="icon1-down.png", width = 32, height = 32, onPress=onFirstView, selected=true },
-  { label="Second", defaultFile="icon2.png", overFile="icon2-down.png", width = 32, height = 32, onPress=onSecondView },
+  { label="Installation Info", defaultFile="icon1.png", overFile="icon1-down.png", width = 32, height = 32, onPress=onFirstView, selected=true },
+  { label="Search", defaultFile="icon1.png", overFile="icon1-down.png", width = 32, height = 32, onPress=onSecondView },
 }
 
 

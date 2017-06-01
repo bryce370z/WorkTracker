@@ -31,7 +31,7 @@ function scene:create( event )
 	-- create some text
   
   -- Form submission button -- 
-  local SubmitBtn = display.newText("Submit", display.contentCenterX, display.contentCenterY * 1.7, native.SystemFont, 24)
+  local SubmitBtn = display.newText("Submit", display.contentCenterX, display.contentCenterY * 1.7, native.SystemFontBold, 24)
   SubmitBtn:setFillColor( 0 )
   
   local function onClick(event)
@@ -131,6 +131,14 @@ function scene:hide( event )
     End_Date.isVisible = true
     End_Date_field.isVisible = true
     scrollview.isVisible = true
+    
+    border1.isVisible = false
+    border2.isVisible = false
+    border3.isVisible = false
+    border4.isVisible = false
+    border5.isVisible = false
+    border6.isVisible = true
+    border7.isVisible = true
 	end
 end
 
